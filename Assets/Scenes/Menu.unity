@@ -1204,6 +1204,7 @@ GameObject:
   - component: {fileID: 2035026261}
   - component: {fileID: 2035026264}
   - component: {fileID: 2035026262}
+  - component: {fileID: 2035026263}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1273,6 +1274,21 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1909519575}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2035026263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035026260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36225197cd8b8924fbd6913b83c7ff12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!222 &2035026264
