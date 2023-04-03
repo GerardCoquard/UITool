@@ -3,31 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OPT_CameraShake : MonoBehaviour,IOption
+public class OPT_Reset : MonoBehaviour
 {
-    public Toggle toggle;
-    public OptionType optionType = OptionType.Settings;
-    OptionType IOption.type => optionType;
-    public string description = "Turn this off if screen-shake effects don't sit well or if you don't like them";
+    public OptionType optionType;
+    public Button button;
+    List<IOption> options;
+    public string description = "Resets all the * settings to its default";
     OPT_Description _description;
     SelectableHandler selectable;
-
-
     private void Start() {
+        options = new List<IOption>(GetComponents<IOption>());
         _description = FindObjectOfType<OPT_Description>();
-        toggle.isOn = OptionsManager.cameraShake;
-        selectable = toggle.GetComponent<SelectableHandler>();
+        selectable = button.GetComponent<SelectableHandler>();
         bool sound = selectable.clickSound;
         selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
-        toggle.onValueChanged.AddListener(OnChange);
+        button.onClick.AddListener(OnChange);
         selectable.clickSound = sound;
     }
-
-    void OnChange(bool isOn)
+    void OnChange()
     {
-        OptionsManager.cameraShake = isOn;
+        foreach (IOption opt in options)
+        {
+            if(opt.type == optionType) opt.Reset();
+        }
     }
     void SetDescription()
     {
@@ -35,14 +35,9 @@ public class OPT_CameraShake : MonoBehaviour,IOption
     }
     void ClearDescription()
     {
-        _description.Clear(description);
-    }
-    public void Reset()
-    {
         bool sound = selectable.clickSound;
         selectable.clickSound = false;
-        OptionsManager.cameraShake = OptionsManager.defaultData.cameraShake;
-        toggle.isOn = OptionsManager.cameraShake;
+        _description.Clear(description);
         selectable.clickSound = sound;
     }
 }

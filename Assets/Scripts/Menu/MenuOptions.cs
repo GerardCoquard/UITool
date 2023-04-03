@@ -100,7 +100,7 @@ public class MenuOptions : MonoBehaviour
         resolutionDropdown.onValueChanged.AddListener(new UnityAction<int>(index => 
         { 
             PlayerPrefs.SetInt(resName, resolutionDropdown.value); 
-            PlayerPrefs.Save(); 
+            PlayerPrefs.Save();
         }));
     }
 

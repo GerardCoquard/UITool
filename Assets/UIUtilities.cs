@@ -10,7 +10,7 @@ public static class UIUtilities
     {
         InputManager.OnDeviceChanged += DeviceChanged;
     }
-    public static void Initialize(){}
+    public static void Init(){}
     public static IEnumerator HighlightButton(GameObject button)
     {
         if(InputManager.device == Devices.Gamepad)
