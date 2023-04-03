@@ -10,17 +10,13 @@ public class OPT_Subtitles : MonoBehaviour,IOption
     OptionType IOption.type => optionType;
     public string description = "Display text captions during speech";
     OPT_Description _description;
-    SelectableHandler selectable;
     private void Start() {
-        toggle.isOn = OptionsManager.subtitles;
+        SelectableHandler selectable = toggle.GetComponent<SelectableHandler>();
+        toggle.SetIsOnWithoutNotify(OptionsManager.subtitles);
         _description = FindObjectOfType<OPT_Description>();
-        selectable = toggle.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         toggle.onValueChanged.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
 
     void OnChange(bool isOn)
@@ -37,10 +33,7 @@ public class OPT_Subtitles : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         OptionsManager.subtitles = OptionsManager.defaultData.subtitles;
-        toggle.isOn = OptionsManager.subtitles;
-        selectable.clickSound = sound;
+        toggle.SetIsOnWithoutNotify(OptionsManager.subtitles);
     }
 }

@@ -24,7 +24,6 @@ public static class DataManager
     public static void NewGame()
     {
         gameData = new Data();
-        Debug.Log(gameData);
     }
     private static void LoadGame()
     {

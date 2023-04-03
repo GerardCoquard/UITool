@@ -10,17 +10,13 @@ public class OPT_FullScreen : MonoBehaviour,IOption
     OptionType IOption.type => optionType;
     public string description = "Full screen or windowed";
     OPT_Description _description;
-    SelectableHandler selectable;
     private void Start() {
-        toggle.isOn = OptionsManager.fullScreen;
+        SelectableHandler selectable = toggle.GetComponent<SelectableHandler>();
+        toggle.SetIsOnWithoutNotify(OptionsManager.fullScreen);
         _description = FindObjectOfType<OPT_Description>();
-        selectable = toggle.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         toggle.onValueChanged.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
 
     void OnChange(bool isOn)
@@ -38,10 +34,7 @@ public class OPT_FullScreen : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         OptionsManager.fullScreen = OptionsManager.defaultData.fullScreen;
-        toggle.isOn = OptionsManager.fullScreen;
-        selectable.clickSound = sound;
+        toggle.SetIsOnWithoutNotify(OptionsManager.fullScreen);
     }
 }

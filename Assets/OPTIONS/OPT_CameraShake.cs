@@ -10,19 +10,15 @@ public class OPT_CameraShake : MonoBehaviour,IOption
     OptionType IOption.type => optionType;
     public string description = "Turn this off if screen-shake effects don't sit well or if you don't like them";
     OPT_Description _description;
-    SelectableHandler selectable;
 
 
     private void Start() {
+        SelectableHandler selectable = toggle.GetComponent<SelectableHandler>();
         _description = FindObjectOfType<OPT_Description>();
-        toggle.isOn = OptionsManager.cameraShake;
-        selectable = toggle.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
+        toggle.SetIsOnWithoutNotify(OptionsManager.cameraShake);
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         toggle.onValueChanged.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
 
     void OnChange(bool isOn)
@@ -39,10 +35,7 @@ public class OPT_CameraShake : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         OptionsManager.cameraShake = OptionsManager.defaultData.cameraShake;
-        toggle.isOn = OptionsManager.cameraShake;
-        selectable.clickSound = sound;
+        toggle.SetIsOnWithoutNotify(OptionsManager.cameraShake);
     }
 }

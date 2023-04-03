@@ -19,18 +19,20 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     public UnityEvent onHighlight;
     public UnityEvent onUnhighlight;
     public UnityEvent onBeginDrag;
+    public UnityEvent onCancel;
+    public UnityEvent onSelect;
     [NonSerialized] public bool interactable = true;
-    private void Start() {
+    private void Awake() {
         switch(GetComponent<Selectable>())
         {
             case Button button:
             button.onClick.AddListener(Click);
             break;
             case Toggle toggle:
-            //toggle.onValueChanged.AddListener(Click);
+            toggle.onValueChanged.AddListener(Click);
             break;
             case TMP_Dropdown dropdown:
-            //dropdown.onValueChanged.AddListener(Click);
+            dropdown.onValueChanged.AddListener(Click);
             break;
             case Dropdown dropdown:
             dropdown.onValueChanged.AddListener(Click);
@@ -67,7 +69,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     void Click()
     {
         if(!interactable) return;
-        if(clickSound) AudioManager.Play(clickSoundName);//playear sonido de click a traves de AudioManager
+        if(clickSound) AudioManager.Play(clickSoundName);
         Menu parentMenu = GetComponentInParent<Menu>();
         if(parentMenu!=null) parentMenu.lastButton = gameObject;
         if(InputManager.device == Devices.Keyboard && unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
@@ -76,7 +78,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     void Click(bool toggleValue)
     {
         if(!interactable) return;
-        if(clickSound) AudioManager.Play(clickSoundName);//playear sonido de click a traves de AudioManager
+        if(clickSound) AudioManager.Play(clickSoundName);
         Menu parentMenu = GetComponentInParent<Menu>();
         if(parentMenu!=null) parentMenu.lastButton = gameObject;
         if(InputManager.device == Devices.Keyboard && unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
@@ -85,7 +87,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     void Click(int dropdownValue)
     {
         if(!interactable) return;
-        if(clickSound) AudioManager.Play(clickSoundName);//playear sonido de click a traves de AudioManager
+        if(clickSound) AudioManager.Play(clickSoundName);
         Menu parentMenu = GetComponentInParent<Menu>();
         if(parentMenu!=null) parentMenu.lastButton = gameObject;
         if(InputManager.device == Devices.Keyboard && unselectOnClick) EventSystem.current.SetSelectedGameObject(null);

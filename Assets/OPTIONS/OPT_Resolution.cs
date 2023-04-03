@@ -3,44 +3,61 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Threading.Tasks;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class OPT_Resolution : MonoBehaviour,IOption
 {
     public TMP_Dropdown dropdown;
     Resolution[] resolutions;
-    int initialChildrens;
-    int lastFrameChildrens;
+    bool lastFrameOpened = false;
     public OptionType optionType = OptionType.Graphics;
     OptionType IOption.type => optionType;
     public string description = "Sets the resolution of the game window";
     OPT_Description _description;
-    SelectableHandler selectable;
+    public UnityEvent onOpen;
+    public UnityEvent onClose;
     private void Start() {
+        SelectableHandler selectable = dropdown.GetComponent<SelectableHandler>();
         SetResolutions();
-        initialChildrens = dropdown.GetComponentsInChildren<RectTransform>().Length;
-        lastFrameChildrens = initialChildrens;
         _description = FindObjectOfType<OPT_Description>();
-        selectable = dropdown.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         dropdown.onValueChanged.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
-
+    
     void OnChange(int res)
     {
         OptionsManager.resolution = res;
         Resolution resolution = resolutions[res];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
+    private void Update() {
+        bool openedThisFrame = dropdown.transform.childCount != 4;
+        if(openedThisFrame && !lastFrameOpened)
+        {
+            InputManager.GetAction("Back").action += CloseDropdown;
+            onOpen?.Invoke();
+        }
+        if(!openedThisFrame && lastFrameOpened)
+        {
+            InputManager.GetAction("Back").action -= CloseDropdown;
+            onClose?.Invoke();
+            if(InputManager.device == Devices.Keyboard) EventSystem.current.SetSelectedGameObject(null);
+        }
+        lastFrameOpened = openedThisFrame;
+    }
+    void CloseDropdown(InputAction.CallbackContext context)
+    {
+        if(context.started) dropdown.Hide();
+    }
     void SetResolutions()
     {
         resolutions = GetResolutions().ToArray();
 
         dropdown.ClearOptions();
-
 
         List<string> options = new List<string>();
 
@@ -62,7 +79,7 @@ public class OPT_Resolution : MonoBehaviour,IOption
             OptionsManager.defaultResolution = currentResolutionIndex;
             OptionsManager.resolution = currentResolutionIndex;
         }
-        dropdown.value = OptionsManager.resolution;
+        dropdown.SetValueWithoutNotify(OptionsManager.resolution);
         dropdown.RefreshShownValue();
     }
     List<Resolution> GetResolutions()
@@ -111,11 +128,10 @@ public class OPT_Resolution : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         OptionsManager.resolution = OptionsManager.defaultResolution;
+        dropdown.SetValueWithoutNotify(OptionsManager.resolution);
+        dropdown.RefreshShownValue();
         Resolution resolution = resolutions[OptionsManager.resolution];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        selectable.clickSound = sound;
     }
 }

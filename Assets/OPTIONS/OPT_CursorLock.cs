@@ -10,17 +10,13 @@ public class OPT_CursorLock : MonoBehaviour,IOption
     OptionType IOption.type => optionType;
     public string description = "There's no escape! (for your mouse cursor from this window during gameplay)";
     OPT_Description _description;
-    SelectableHandler selectable;
     private void Start() {
-        toggle.isOn = OptionsManager.cursorLock;
+        SelectableHandler selectable = toggle.GetComponent<SelectableHandler>();
+        toggle.SetIsOnWithoutNotify(OptionsManager.cursorLock);
         _description = FindObjectOfType<OPT_Description>();
-        selectable = toggle.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         toggle.onValueChanged.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
 
     void OnChange(bool isOn)
@@ -37,10 +33,7 @@ public class OPT_CursorLock : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         OptionsManager.cursorLock = OptionsManager.defaultData.cursorLock;
-        toggle.isOn = OptionsManager.cursorLock;
-        selectable.clickSound = sound;
+        toggle.SetIsOnWithoutNotify(OptionsManager.cursorLock);
     }
 }

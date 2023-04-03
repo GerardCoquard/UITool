@@ -22,6 +22,7 @@ public static class OptionsManager
         vSync = DataManager.Load<bool>("vSync");
         resolution = DataManager.Load<int>("resolution");
         defaultResolution = DataManager.Load<int>("defaultResolution");
+        
         DataManager.onSave += SaveData;
     }
     static void SaveData()
@@ -32,5 +33,6 @@ public static class OptionsManager
         DataManager.Save("subtitles",subtitles);
         DataManager.Save("vSync",vSync);
         DataManager.Save("resolution",resolution);
+        DataManager.Save("defaultResolution",defaultResolution);
     }
 }

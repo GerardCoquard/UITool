@@ -10,17 +10,13 @@ public class OPT_Reset : MonoBehaviour
     List<IOption> options;
     public string description = "Resets all the * settings to its default";
     OPT_Description _description;
-    SelectableHandler selectable;
     private void Start() {
+        SelectableHandler selectable = button.GetComponent<SelectableHandler>();
         options = new List<IOption>(GetComponents<IOption>());
         _description = FindObjectOfType<OPT_Description>();
-        selectable = button.GetComponent<SelectableHandler>();
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         selectable.onHighlight.AddListener(SetDescription);
         selectable.onUnhighlight.AddListener(ClearDescription);
         button.onClick.AddListener(OnChange);
-        selectable.clickSound = sound;
     }
     void OnChange()
     {
@@ -35,9 +31,6 @@ public class OPT_Reset : MonoBehaviour
     }
     void ClearDescription()
     {
-        bool sound = selectable.clickSound;
-        selectable.clickSound = false;
         _description.Clear(description);
-        selectable.clickSound = sound;
     }
 }
