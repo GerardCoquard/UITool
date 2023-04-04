@@ -52,6 +52,7 @@ public static class AudioManager
     {
         AudioSource audio = MonoBehaviour.Instantiate(audioPrefab).GetComponent<AudioSource>();
         audio.clip = Resources.Load<AudioClip>(clipName);
+        audio.volume = 0.3f;
         audio.Play();
     }
     public static void Init(){}

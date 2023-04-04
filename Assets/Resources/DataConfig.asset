@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: DataConfig
   m_EditorClassIdentifier: 
   fileName: data.game
-  useEncryption: 0
+  useEncryption: 1

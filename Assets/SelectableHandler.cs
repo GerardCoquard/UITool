@@ -17,6 +17,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     public UnityEvent<bool> onClickBool;
     public UnityEvent<int> onClickInt;
     public UnityEvent onHighlight;
+    public UnityEvent onHighlightGamepad;
     public UnityEvent onUnhighlight;
     public UnityEvent onBeginDrag;
     public UnityEvent onCancel;
@@ -60,6 +61,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     void Hihghlight()
     {
         AudioManager.Play(highlightSoundName);
+        if(InputManager.device == Devices.Gamepad) onHighlightGamepad?.Invoke();
         onHighlight?.Invoke();
     }
     void Unhighlight()
