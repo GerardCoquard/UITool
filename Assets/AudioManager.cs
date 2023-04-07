@@ -32,26 +32,18 @@ public static class AudioManager
         audioHolder = CreateAudioHolder();
         DataManager.onSave += SaveData;
     }
-    public static AudioSource Play(string clipName)
+    public static AudioSourceHandler Play(string clipName)
     {
         if(!clips.ContainsKey(clipName))
         {
             Debug.LogWarning("There's no AudioClip in Resources matching the name " + clipName);
             return null;
         }
-        AudioSource audio = MonoBehaviour.Instantiate(audioPrefab,audioHolder.transform).GetComponent<AudioSource>();
-        audio.clip = clips[clipName].sound;
-        audio.outputAudioMixerGroup = clips[clipName].group;
+        AudioSourceHandler audio = MonoBehaviour.Instantiate(audioPrefab,audioHolder.transform).GetComponent<AudioSourceHandler>();
+        audio.SetClip(clips[clipName].sound);
+        audio.SetGroup(clips[clipName].group);
         audio.Play();
         return audio;
-    }
-    public static AudioSource At(Vector3 pos, Transform parent)
-    {
-        return null;
-    }
-    public static AudioSource Volume(float vol)
-    {
-        return null;
     }
     static void LoadAudio(string groupName)
     {
