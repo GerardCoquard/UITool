@@ -10,6 +10,8 @@ public static class AudioManager
     static Dictionary<string,float> defaultVolumes;
     static float multiplier;
     static GameObject audioPrefab;
+    static GameObject audioHolder;
+    static Dictionary<string,Sound> clips = new Dictionary<string, Sound>();
     static AudioManager()
     {
         audioMixer = Resources.Load<AudioMixer>("AudioMixer");
@@ -23,8 +25,58 @@ public static class AudioManager
             defaultVolumes.Add(group.name,DataManager.Load<float>("defaultVolume" + group.name));
             SetVolume(group.name,volumes[group.name]);
         }
+        LoadAudio("Music");
+        LoadAudio("SFX");
+        LoadAudio("Voice");
         multiplier = 30f;
+        audioHolder = CreateAudioHolder();
         DataManager.onSave += SaveData;
+    }
+    public static AudioSource Play(string clipName)
+    {
+        if(!clips.ContainsKey(clipName))
+        {
+            Debug.LogWarning("There's no AudioClip in Resources matching the name " + clipName);
+            return null;
+        }
+        AudioSource audio = MonoBehaviour.Instantiate(audioPrefab,audioHolder.transform).GetComponent<AudioSource>();
+        audio.clip = clips[clipName].sound;
+        audio.outputAudioMixerGroup = clips[clipName].group;
+        audio.Play();
+        return audio;
+    }
+    public static AudioSource At(Vector3 pos, Transform parent)
+    {
+        return null;
+    }
+    public static AudioSource Volume(float vol)
+    {
+        return null;
+    }
+    static void LoadAudio(string groupName)
+    {
+        if(Resources.LoadAll<AudioClip>(groupName).Length <= 0) Debug.LogWarning("Wrong Resources audio loading folder name");
+        AudioClip [] sounds = Resources.LoadAll<AudioClip>(groupName);
+        foreach (AudioClip sound in sounds)
+        {
+            clips.Add(sound.name, new Sound(sound,audioMixer.FindMatchingGroups(groupName)[0]));
+        }
+    }
+    public static void Pause()
+    {
+        AudioSource [] audios = audioHolder.GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource audio in audios)
+        {
+            audio.Pause();
+        }
+    }
+    public static void Resume()
+    {
+        AudioSource [] audios = audioHolder.GetComponentsInChildren<AudioSource>();
+        foreach (AudioSource audio in audios)
+        {
+            audio.UnPause();
+        }
     }
     public static float GetVolume(string volName)
     {
@@ -48,12 +100,12 @@ public static class AudioManager
             DataManager.Save("volume" + vol.Key,vol.Value);
         }
     }
-    public static void Play(string clipName)
+    static GameObject CreateAudioHolder()
     {
-        AudioSource audio = MonoBehaviour.Instantiate(audioPrefab).GetComponent<AudioSource>();
-        audio.clip = Resources.Load<AudioClip>(clipName);
-        audio.volume = 0.3f;
-        audio.Play();
+        GameObject holder = MonoBehaviour.Instantiate(new GameObject());
+        holder.name = "AUDIO";
+        MonoBehaviour.DontDestroyOnLoad(holder);
+        return holder;
     }
     public static void Init(){}
 }

@@ -155,6 +155,6 @@ MonoBehaviour:
     m_ActionName: Player/Fire[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
-  m_DefaultActionMap: 6127296d-eb64-4481-8dd4-d810a604029a
+  m_DefaultActionMap: f5921e6b-855c-4089-9e07-7d60e5bfe0b9
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Users;
 using UnityEngine.SceneManagement;
 
+//InputAction.CallbackContext context
 
 
 static class InputManager
@@ -20,6 +21,7 @@ static class InputManager
     static EventSystem eventSystem; //Current EventSystem
     public static Devices device { get; private set; }
     static string path; //Path of the InputManager prefab
+    static bool cleanListeners = true;
     static InputManager()
     {
         //Constructor called only one time when a static method of this class is called
@@ -45,6 +47,7 @@ static class InputManager
     }
     public static void ClearListeners(Scene a)
     {
+        if(!cleanListeners) return;
         //Removes all subscribed listeners of all events
         foreach (ActionContainer _event in events)
         {
