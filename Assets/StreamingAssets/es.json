@@ -1,24 +1,134 @@
 {
     "items": [
         {
-            "key": "greeting",
-            "value": "Hola mundo"
-        },
-        {
-            "key": "menu_play",
-            "value": "Jugar"
-        },
-        {
-            "key": "menu_options",
+            "key": "OPT_Options",
             "value": "Opciones"
         },
         {
-            "key": "menu_exit",
-            "value": "Salir"
+            "key": "OPT_Graphics",
+            "value": "Gráficos"
+        },
+        {
+            "key": "OPT_Audio",
+            "value": "Audio"
+        },
+        {
+            "key": "OPT_Others",
+            "value": "Otros"
+        },
+        {
+            "key": "OPT_Resolution",
+            "value": "Resolución"
         },
 		{
-			"key":"dialogue_npc_alexby_01",
-			"value":"Hola me llamo alexby, hasta luego" 
+			"key":"OPT_FullScreen",
+			"value":"Pantalla Completa"
+		},
+        {
+			"key":"OPT_VSync",
+			"value":"VSync" 
+		},
+        {
+			"key":"OPT_Reset",
+			"value":"Reiniciar"
+		},
+        {
+			"key":"OPT_VolumeMaster",
+			"value":"Maestro" 
+		},
+        {
+			"key":"OPT_Music",
+			"value":"Música" 
+		},
+        {
+			"key":"OPT_SFX",
+			"value":"SFX"
+		},
+        {
+			"key":"OPT_Voice",
+			"value":"Voces"
+		},
+        {
+			"key":"OPT_CursorLock",
+			"value":"Bloquear Cursor" 
+		},
+        {
+			"key":"OPT_Subtitles",
+			"value":"Subtítulos" 
+		},
+        {
+			"key":"OPT_CameraShake",
+			"value":"Sacudida de cámara" 
+		},
+        {
+			"key":"OPT_Language",
+			"value":"Lenguaje"
+		},
+
+
+        {
+            "key": "Description_OPT_Resolution",
+            "value": "Establece la resolución de la ventana del juego"
+        },
+		{
+			"key":"Description_OPT_FullScreen",
+			"value":"Pantalla completa o ventana" 
+		},
+        {
+			"key":"Description_OPT_VSync",
+			"value":"Establece la velocidad de fotogramas a la frecuencia de actualización de la pantalla. Si las cosas se ven bien, déjalo así"
+		},
+        {
+			"key":"Description_OPT_Reset",
+			"value":"Restablece toda la configuración de * a su valor predeterminado"
+		},
+        {
+			"key":"Description_OPT_VolumeMaster",
+			"value":"Cambia el volumen maestro del juego" 
+		},
+        {
+			"key":"Description_OPT_Volume",
+			"value":"Cambia el volumen de *"
+		},
+        {
+			"key":"Description_OPT_CursorLock",
+			"value":"¡No hay escapatoria! (para el cursor de esta ventana durante el juego)" 
+		},
+        {
+			"key":"Description_OPT_Subtitles",
+			"value":"Mostrar subtítulos de los diálogos"
+		},
+        {
+			"key":"Description_OPT_CameraShake",
+			"value":"Desactívalo si los efectos de vibración de la pantalla no le sientan bien o si no le gustan." 
+		},
+        {
+			"key":"Description_OPT_Language",
+			"value":"Idioma actual de todos los textos en el juego"
+		},
+
+
+
+
+
+
+
+
+
+        {
+			"key":"Button_Play",
+			"value":"Jugar" 
 		}
+        ,
+        {
+			"key":"Button_Options",
+			"value":"Opciones" 
+		}
+        ,
+        {
+			"key":"Button_Exit",
+			"value":"Salir"
+		}
+        
     ]
 }
