@@ -410,12 +410,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &3173927983830506851
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,12 +650,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &3173927983830506861
@@ -984,12 +972,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3173927984238490680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1175,12 +1157,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9155550801096133963
@@ -1504,12 +1480,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9155550801186938774
@@ -1851,12 +1821,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9155550801264792680
@@ -2778,12 +2742,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550801358866899
 GameObject:
   m_ObjectHideFlags: 0
@@ -3348,12 +3306,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550801649275771
 GameObject:
   m_ObjectHideFlags: 0
@@ -3624,12 +3576,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550801739713199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3768,12 +3714,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9155550801782793234
@@ -4515,12 +4455,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550801977348111
 GameObject:
   m_ObjectHideFlags: 0
@@ -4993,7 +4927,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.9210014, y: 2.297001}
+  m_AnchoredPosition: {x: 1.9210205, y: 2.296997}
   m_SizeDelta: {x: 1819.378, y: 991.341}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9155550802061322636
@@ -5010,9 +4944,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstButton: {fileID: 3173927983830506851}
   rememberLastButton: 0
-  cursorLockRestricted: 0
-  pauseTime: 1
+  cursorLock: 0
+  freezeTime: 1
   closeOnBack: 1
+  onBack:
+    m_PersistentCalls:
+      m_Calls: []
   tittleButtons:
   - {fileID: 3173927983830506848}
   - {fileID: 9155550803013448546}
@@ -5880,12 +5817,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550802363257561
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,12 +5953,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550802395248288
 GameObject:
   m_ObjectHideFlags: 0
@@ -6138,8 +6063,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 19.102, y: -214.2}
-  m_SizeDelta: {x: 413.62, y: 114.9988}
+  m_AnchoredPosition: {x: 19.102, y: -212.922}
+  m_SizeDelta: {x: 413.62, y: 58.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9155550802406742587
 CanvasRenderer:
@@ -6163,13 +6088,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Changes the volume of the whole game.
+  m_text: Changes the volume of the whole game. Now this is a checking thing
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20b88be2f115b374783a27e20383ff80, type: 2}
   m_sharedMaterial: {fileID: 4264300811817033799, guid: 20b88be2f115b374783a27e20383ff80, type: 2}
@@ -6844,12 +6769,6 @@ MonoBehaviour:
   onBeginDrag:
     m_PersistentCalls:
       m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &9155550802648088945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7233,12 +7152,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &9155550802725027460
@@ -8351,12 +8264,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   onBeginDrag:
-    m_PersistentCalls:
-      m_Calls: []
-  onCancel:
-    m_PersistentCalls:
-      m_Calls: []
-  onSelect:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &9155550803013448536

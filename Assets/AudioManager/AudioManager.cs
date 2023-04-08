@@ -18,6 +18,7 @@ public static class AudioManager
         audioPrefab = Resources.Load<GameObject>("AudioPrefab");
         volumes = new Dictionary<string, float>();
         defaultVolumes = new Dictionary<string, float>();
+        multiplier = 30f;
         List<AudioMixerGroup> outputs = new List<AudioMixerGroup>(audioMixer.FindMatchingGroups(string.Empty));
         foreach (AudioMixerGroup group in outputs)
         {
@@ -28,7 +29,6 @@ public static class AudioManager
         LoadAudio("Music");
         LoadAudio("SFX");
         LoadAudio("Voice");
-        multiplier = 30f;
         audioHolder = CreateAudioHolder();
         DataManager.onSave += SaveData;
     }
@@ -56,16 +56,16 @@ public static class AudioManager
     }
     public static void Pause()
     {
-        AudioSource [] audios = audioHolder.GetComponentsInChildren<AudioSource>();
-        foreach (AudioSource audio in audios)
+        AudioSourceHandler [] audios = audioHolder.GetComponentsInChildren<AudioSourceHandler>();
+        foreach (AudioSourceHandler audio in audios)
         {
             audio.Pause();
         }
     }
     public static void Resume()
     {
-        AudioSource [] audios = audioHolder.GetComponentsInChildren<AudioSource>();
-        foreach (AudioSource audio in audios)
+        AudioSourceHandler [] audios = audioHolder.GetComponentsInChildren<AudioSourceHandler>();
+        foreach (AudioSourceHandler audio in audios)
         {
             audio.UnPause();
         }

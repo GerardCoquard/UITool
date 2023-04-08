@@ -34,5 +34,7 @@ public static class OptionsManager
         DataManager.Save("vSync",vSync);
         DataManager.Save("resolution",resolution);
         DataManager.Save("defaultResolution",defaultResolution);
+
+        Cursor.lockState = CursorLockMode.None;
     }
 }

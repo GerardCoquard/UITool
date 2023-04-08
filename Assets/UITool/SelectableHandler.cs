@@ -20,8 +20,6 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     public UnityEvent onHighlightGamepad;
     public UnityEvent onUnhighlight;
     public UnityEvent onBeginDrag;
-    public UnityEvent onCancel;
-    public UnityEvent onSelect;
     [NonSerialized] public bool interactable = true;
     private void Awake() {
         switch(GetComponent<Selectable>())

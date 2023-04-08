@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 using UnityEngine.InputSystem;
 
@@ -8,32 +9,61 @@ public class Menu : MonoBehaviour
 {
     public GameObject firstButton;
     public bool rememberLastButton = true;
-    public bool cursorLockRestricted = false;
-    public bool pauseTime = true;
+    public bool cursorLock = false;
+    public bool freezeTime = true;
     public bool closeOnBack = true;
     bool initialized = false;
+    public UnityEvent onBack;
     [NonSerialized] public GameObject lastButton;
     public virtual void OnStart(){initialized = true;}
     public virtual void OnEnable()
     {
         if(!initialized) OnStart();
-        if(InputManager.device == Devices.Gamepad) UIUtilities.HighlightButton(lastButton==null || !rememberLastButton? firstButton : lastButton);
+        Cursor.visible = true;
+        HighlightButton();
         SubscribeOnBack();
+        FreezeTime();
+        LockCursor();
     }
     public virtual void OnDisable() {
         UnsubscribeOnBack();
+        UnlockCursor();
     }
-    public virtual void Close(InputAction.CallbackContext context)
+    public void HighlightButton()
     {
-        if(context.started) gameObject.SetActive(false);
+        if(InputManager.device == Devices.Gamepad) UIUtilities.HighlightButton(lastButton==null || !rememberLastButton? firstButton : lastButton);
     }
-
-    public void SubscribeOnBack()
+    void FreezeTime()
+    {
+        if(freezeTime) Time.timeScale = 0f;
+        else Time.timeScale = 1f;
+    }
+    void LockCursor()
+    {
+        if(cursorLock) Cursor.lockState = CursorLockMode.Confined;
+        else Cursor.lockState = CursorLockMode.None;
+    }
+    void UnlockCursor()
+    {
+        if(OptionsManager.cursorLock) Cursor.lockState = CursorLockMode.Confined;
+        else Cursor.lockState = CursorLockMode.None;
+    }
+    void Close(InputAction.CallbackContext context)
+    {
+        if(context.ReadValueAsButton()) gameObject.SetActive(false);
+    }
+    void SubscribeOnBack()
     {
         if(closeOnBack) InputManager.GetAction("Back").action += Close;
+        InputManager.GetAction("Back").action += OnBack;
     }
-    public void UnsubscribeOnBack()
+    void UnsubscribeOnBack()
     {
         if(closeOnBack) InputManager.GetAction("Back").action -= Close;
+        InputManager.GetAction("Back").action -= OnBack;
+    }
+    void OnBack(InputAction.CallbackContext context)
+    {
+        if(context.ReadValueAsButton()) onBack?.Invoke();
     }
 }
