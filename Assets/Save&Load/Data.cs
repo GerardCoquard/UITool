@@ -24,9 +24,12 @@ public class Data : DynamicData
     public bool vSync;
     public int resolution;
     public int defaultResolution;
+    //LOCALIZATION
+    public Languages language;
 
     public Data()
     {
+        //AUDIO
         OptionsDefaultConfig defaultOptions =  Resources.Load<OptionsDefaultConfig>("OptionsDefaultConfig");
         volumeMaster = defaultOptions.volumeMaster;
         volumeMusic = defaultOptions.volumeMusic;
@@ -36,6 +39,7 @@ public class Data : DynamicData
         defaultVolumeMusic = defaultOptions.volumeMusic;
         defaultVolumeSFX = defaultOptions.volumeSFX;
         defaultVolumeVoice = defaultOptions.volumeVoice;
+        //OPTIONS
         cameraShake = defaultOptions.cameraShake;
         cursorLock = defaultOptions.cursorLock;
         fullScreen = defaultOptions.fullScreen;
@@ -43,6 +47,8 @@ public class Data : DynamicData
         vSync = defaultOptions.vSync;
         resolution = defaultOptions.resolution;
         defaultResolution = defaultOptions.resolution;
+        //LANGUAGE
+        language = Languages.English;
     }
 }
 

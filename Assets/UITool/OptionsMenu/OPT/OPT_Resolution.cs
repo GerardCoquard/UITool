@@ -51,7 +51,7 @@ public class OPT_Resolution : MonoBehaviour,IOption
     }
     void CloseDropdown(InputAction.CallbackContext context)
     {
-        if(context.started) dropdown.Hide();
+        if(context.ReadValueAsButton()) dropdown.Hide();
     }
     void SetResolutions()
     {

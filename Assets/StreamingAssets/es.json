@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "key": "greeting",
+            "value": "Hola mundo"
+        },
+        {
+            "key": "menu_play",
+            "value": "Jugar"
+        },
+        {
+            "key": "menu_options",
+            "value": "Opciones"
+        },
+        {
+            "key": "menu_exit",
+            "value": "Salir"
+        },
+		{
+			"key":"dialogue_npc_alexby_01",
+			"value":"Hola me llamo alexby, hasta luego" 
+		}
+    ]
+}

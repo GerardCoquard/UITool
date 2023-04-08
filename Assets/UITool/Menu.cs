@@ -52,12 +52,12 @@ public class Menu : MonoBehaviour
     {
         if(context.ReadValueAsButton()) gameObject.SetActive(false);
     }
-    void SubscribeOnBack()
+    public void SubscribeOnBack()
     {
         if(closeOnBack) InputManager.GetAction("Back").action += Close;
         InputManager.GetAction("Back").action += OnBack;
     }
-    void UnsubscribeOnBack()
+    public void UnsubscribeOnBack()
     {
         if(closeOnBack) InputManager.GetAction("Back").action -= Close;
         InputManager.GetAction("Back").action -= OnBack;

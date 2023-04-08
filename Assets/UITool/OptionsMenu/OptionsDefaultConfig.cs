@@ -21,4 +21,5 @@ public class OptionsDefaultConfig : ScriptableObject
     public bool subtitles = true;
     public bool vSync = true;
     public int resolution = -1;
+    public Languages language = Languages.English;
 }

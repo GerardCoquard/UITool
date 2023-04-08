@@ -1,0 +1,24 @@
+{
+    "items": [
+        {
+            "key": "greeting",
+            "value": "Hello, world!"
+        },
+        {
+            "key": "menu_play",
+            "value": "Play"
+        },
+        {
+            "key": "menu_options",
+            "value": "Options"
+        },
+        {
+            "key": "menu_exit",
+            "value": "Exit"
+        },
+		{
+			"key":"dialogue_npc_alexby_01",
+			"value":"Hello my name is Alexby" 
+		}
+    ]
+}
