@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Init : MonoBehaviour
 {
-    void Start()
+    void Awake()
     {
         UIUtilities.Init();
         AudioManager.Init();
         InputManager.Init();
+    }
+    private void Update() {
+        //Debug.Log(InputManager.playerInput.currentActionMap.name);
     }
 }
