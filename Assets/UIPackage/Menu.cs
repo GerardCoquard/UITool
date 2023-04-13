@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     public bool cursorLock = false;
     public bool freezeTime = true;
     public bool closeOnBack = true;
+    public bool switchActionMapOnBack = false;
     bool initialized = false;
     public UnityEvent onBack;
     [NonSerialized] public GameObject lastButton;
@@ -24,10 +25,12 @@ public class Menu : MonoBehaviour
         SubscribeOnBack();
         FreezeTime();
         LockCursor();
+        InputManager.ChangeActionMap("UI");
     }
     public virtual void OnDisable() {
         UnsubscribeOnBack();
         UnlockCursor();
+        SwitchActionMap();
     }
     public void HighlightButton()
     {
@@ -66,4 +69,9 @@ public class Menu : MonoBehaviour
     {
         if(context.ReadValueAsButton()) onBack?.Invoke();
     }
+    void SwitchActionMap()
+    {
+        if(switchActionMapOnBack) InputManager.ChangeActionMap("Player");
+    }
+
 }

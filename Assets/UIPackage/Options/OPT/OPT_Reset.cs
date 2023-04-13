@@ -31,6 +31,7 @@ public class OPT_Reset : MonoBehaviour
         {
             if(opt.type == optionType) opt.Reset();
         }
+        SetDescription();
     }
     void SetDescription()
     {

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Init : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        DataManager.Init();
         UIUtilities.Init();
         AudioManager.Init();
         InputManager.Init();
-        LocalizationManager.Init();
+    }
+    private void Update() {
+        //Debug.Log(InputManager.playerInput.currentActionMap.name);
     }
 }

@@ -132,7 +132,7 @@ static class InputManager
     public static void ChangeActionMap(string _actionMapName)
     {
         //Change PlayerInput Action Map to one named _actionMapName
-        playerInput.SwitchCurrentActionMap(_actionMapName);
+        if(playerInput!=null) playerInput.SwitchCurrentActionMap(_actionMapName);
     }
     static ActionContainer GetEvent(string _actionName)
     {
