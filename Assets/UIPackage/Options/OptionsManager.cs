@@ -12,7 +12,6 @@ public static class OptionsManager
     public static bool vSync;
     public static int resolution;
     public static int defaultResolution;
-    public static Languages language;
     static OptionsManager()
     {
         defaultData = Resources.Load<OptionsDefaultConfig>("OptionsDefaultConfig");
@@ -23,7 +22,6 @@ public static class OptionsManager
         vSync = DataManager.Load<bool>("vSync");
         resolution = DataManager.Load<int>("resolution");
         defaultResolution = DataManager.Load<int>("defaultResolution");
-        language = DataManager.Load<Languages>("language");
 
         DataManager.onSave += SaveData;
     }
@@ -36,6 +34,5 @@ public static class OptionsManager
         DataManager.Save("vSync",vSync);
         DataManager.Save("resolution",resolution);
         DataManager.Save("defaultResolution",defaultResolution);
-        DataManager.Save("language",language);
     }
 }

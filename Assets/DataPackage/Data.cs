@@ -25,7 +25,7 @@ public class Data : DynamicData
     public int resolution;
     public int defaultResolution;
     //LOCALIZATION
-    public Languages language;
+    public int language;
 
     public Data()
     {
@@ -48,7 +48,7 @@ public class Data : DynamicData
         resolution = defaultOptions.resolution;
         defaultResolution = defaultOptions.resolution;
         //LANGUAGE
-        language = Languages.English;
+        language = 0;
     }
 }
 

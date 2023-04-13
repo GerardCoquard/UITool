@@ -35,8 +35,9 @@ public class OPT_Reset : MonoBehaviour
     }
     void SetDescription()
     {
-        string processedDescription = description.Replace("*",LocalizationManager.GetLocalizedValue("OPT_" + optionType.ToString()));
-        _description.Set(processedDescription);
+        string processedDescription = description.Replace("*",LocalizationManager.GetLocalizedValue(optionType.ToString()));
+        Debug.Log(processedDescription);
+        _description.Set(processedDescription.ToString());
     }
     void ClearDescription()
     {

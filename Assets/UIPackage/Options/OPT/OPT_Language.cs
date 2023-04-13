@@ -12,7 +12,7 @@ public class OPT_Language : MonoBehaviour,IOption
 {
     public TMP_Dropdown dropdown;
     bool lastFrameOpened = false;
-    Languages [] languages;
+    string [] languages;
     public OptionType optionType = OptionType.Others;
     OptionType IOption.type => optionType;
     public UnityEvent onOpen;
@@ -34,11 +34,9 @@ public class OPT_Language : MonoBehaviour,IOption
         selectable.onUnhighlight.AddListener(ClearDescription);
         dropdown.onValueChanged.AddListener(OnChange);
     }
-    
     void OnChange(int _language)
     {
-        OptionsManager.language = languages[_language];
-        LocalizationManager.ChangeLanguage(languages[_language]);
+        LocalizationManager.ChangeLanguage(_language);
     }
     private void Update() {
         bool openedThisFrame = dropdown.transform.childCount != 4;
@@ -61,17 +59,17 @@ public class OPT_Language : MonoBehaviour,IOption
     }
     void SetLanguages()
     {
-        languages = (Languages[])System.Enum.GetValues(typeof(Languages));
+        languages = LocalizationManager.GetLanguages().ToArray();
 
         dropdown.ClearOptions();
 
         List<string> options = new List<string>();
-        foreach (Languages _language in languages)
+        foreach (string _language in languages)
         {
-            options.Add(_language.ToString());
+            options.Add(_language);
         }
         dropdown.AddOptions(options);
-        dropdown.SetValueWithoutNotify((int)OptionsManager.language);
+        dropdown.SetValueWithoutNotify(LocalizationManager.GetCurrentLanguage());
         dropdown.RefreshShownValue();
     }
     void SetDescription()
@@ -84,9 +82,8 @@ public class OPT_Language : MonoBehaviour,IOption
     }
     public void Reset()
     {
-        OptionsManager.language = OptionsManager.defaultData.language;
-        dropdown.SetValueWithoutNotify((int)OptionsManager.language);
+        LocalizationManager.ChangeLanguage(0);
+        dropdown.SetValueWithoutNotify(0);
         dropdown.RefreshShownValue();
-        LocalizationManager.ChangeLanguage(OptionsManager.language);
     }
 }

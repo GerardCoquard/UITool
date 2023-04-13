@@ -6,7 +6,7 @@ using TMPro;
 public class Description : MonoBehaviour
 {
     TextMeshProUGUI label;
-    private void Start() {
+    private void OnEnable() {
         label = GetComponent<TextMeshProUGUI>();
         label.text = "";
     }
