@@ -7,7 +7,7 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandler,IPointerExitHandler,IDeselectHandler,IEndDragHandler,IBeginDragHandler
+public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandler,IPointerExitHandler,IDeselectHandler,IEndDragHandler,IBeginDragHandler,IDragHandler
 {
     public bool clickSound = true;
     public string highlightSoundName = "ButtonHighlightSound";
@@ -56,6 +56,29 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     {
         if(InputManager.device == Devices.Keyboard) Unhighlight();
     }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if(InputManager.device == Devices.Gamepad) return;
+        Unhighlight();
+        if(unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if(InputManager.device == Devices.Gamepad) return;
+        if(!interactable) return;
+        Menu parentMenu = GetComponentInParent<Menu>();
+        if(parentMenu!=null) parentMenu.lastButton = gameObject;
+        if(unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
+        onBeginDrag?.Invoke();
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if(InputManager.device == Devices.Gamepad) return;
+        Unhighlight();
+        if(unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
+    }
     void Hihghlight()
     {
         AudioManager.Play(highlightSoundName);
@@ -92,22 +115,5 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
         if(parentMenu!=null) parentMenu.lastButton = gameObject;
         if(InputManager.device == Devices.Keyboard && unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
         onClickInt?.Invoke(dropdownValue);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        if(InputManager.device == Devices.Gamepad) return;
-        Unhighlight();
-        if(unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
-    }
-
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if(InputManager.device == Devices.Gamepad) return;
-        if(!interactable) return;
-        Menu parentMenu = GetComponentInParent<Menu>();
-        if(parentMenu!=null) parentMenu.lastButton = gameObject;
-        if(InputManager.device == Devices.Keyboard && unselectOnClick) EventSystem.current.SetSelectedGameObject(null);
-        onBeginDrag?.Invoke();
     }
 }
