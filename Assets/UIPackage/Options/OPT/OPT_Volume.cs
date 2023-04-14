@@ -49,7 +49,9 @@ public class OPT_Volume : MonoBehaviour,IOption
     }
     void SetDescription()
     {
-        string processedDescription = description.Replace("*",LocalizationManager.GetLocalizedValue("OPT_" + outputGroup.name));
+        int index = description.IndexOf('*');
+        string processedDescription = description.Remove(index);
+        processedDescription = processedDescription.Insert(index,LocalizationManager.GetLocalizedValue("OPT_" + outputGroup.name));
         _description.Set(processedDescription);
     }
     void ClearDescription()
