@@ -13,6 +13,7 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
     public string highlightSoundName = "ButtonHighlightSound";
     public string clickSoundName = "ButtonClickSound";
     public bool unselectOnClick = false;
+    public UnityEvent onEnable;
     public UnityEvent onClick;
     public UnityEvent<bool> onClickBool;
     public UnityEvent<int> onClickInt;
@@ -39,6 +40,9 @@ public class SelectableHandler : MonoBehaviour,ISelectHandler,IPointerEnterHandl
             default:
             break;
         }
+    }
+    private void OnEnable() {
+        onEnable?.Invoke();
     }
     public void OnSelect(BaseEventData eventData)
     {

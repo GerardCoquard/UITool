@@ -16,6 +16,7 @@ public static class AudioManager
     {
         audioMixer = Resources.Load<AudioMixer>("AudioMixer");
         audioPrefab = Resources.Load<GameObject>("AudioPrefab");
+        Dictionary<string,float> defaultConfig = Resources.Load<AudioDefaultConfig>("AudioDefaultConfig").GetDefaultVolumes();
         volumes = new Dictionary<string, float>();
         defaultVolumes = new Dictionary<string, float>();
         multiplier = 30f;
@@ -23,7 +24,8 @@ public static class AudioManager
         foreach (AudioMixerGroup group in outputs)
         {
             volumes.Add(group.name,DataManager.Load<float>("volume" + group.name));
-            defaultVolumes.Add(group.name,DataManager.Load<float>("defaultVolume" + group.name));
+            if(defaultConfig.ContainsKey(group.name)) defaultVolumes.Add(group.name,defaultConfig[group.name]);
+            else Debug.LogWarning("Default audio value of " + group.name + " named incorrectly");
             SetVolume(group.name,volumes[group.name]);
         }
         LoadAudio("Music");

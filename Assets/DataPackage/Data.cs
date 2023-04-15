@@ -12,10 +12,6 @@ public class Data : DynamicData
     public float volumeMusic;
     public float volumeSFX;
     public float volumeVoice;
-    public float defaultVolumeMaster;
-    public float defaultVolumeMusic;
-    public float defaultVolumeSFX;
-    public float defaultVolumeVoice;
     //OPTIONS
     public bool cameraShake;
     public bool cursorLock;
@@ -30,16 +26,13 @@ public class Data : DynamicData
     public Data()
     {
         //AUDIO
-        OptionsDefaultConfig defaultOptions =  Resources.Load<OptionsDefaultConfig>("OptionsDefaultConfig");
-        volumeMaster = defaultOptions.volumeMaster;
-        volumeMusic = defaultOptions.volumeMusic;
-        volumeSFX = defaultOptions.volumeSFX;
-        volumeVoice = defaultOptions.volumeVoice;
-        defaultVolumeMaster = defaultOptions.volumeMaster;
-        defaultVolumeMusic = defaultOptions.volumeMusic;
-        defaultVolumeSFX = defaultOptions.volumeSFX;
-        defaultVolumeVoice = defaultOptions.volumeVoice;
+        AudioDefaultConfig defaultAudio =  Resources.Load<AudioDefaultConfig>("AudioDefaultConfig");
+        volumeMaster = defaultAudio.Master;
+        volumeMusic = defaultAudio.Music;
+        volumeSFX = defaultAudio.SFX;
+        volumeVoice = defaultAudio.Voice;
         //OPTIONS
+        OptionsDefaultConfig defaultOptions =  Resources.Load<OptionsDefaultConfig>("OptionsDefaultConfig");
         cameraShake = defaultOptions.cameraShake;
         cursorLock = defaultOptions.cursorLock;
         fullScreen = defaultOptions.fullScreen;
@@ -47,7 +40,7 @@ public class Data : DynamicData
         vSync = defaultOptions.vSync;
         resolution = defaultOptions.resolution;
         defaultResolution = defaultOptions.resolution;
-        //LANGUAGE
+        //LOCALIZATION
         language = 0;
     }
 }
