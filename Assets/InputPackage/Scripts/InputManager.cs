@@ -147,6 +147,10 @@ static class InputManager
         if(playerInput!=null) Debug.LogWarning("Action named " + _actionName + " doesn't exist");
         return null;
     }
+    public static string GetCurrentActionMap()
+    {
+        return "HOLA";
+    }
     public static void Init(){}
 }
 public enum Devices
